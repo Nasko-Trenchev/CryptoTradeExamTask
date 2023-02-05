@@ -1,5 +1,6 @@
 const express = require('express');
 
+const path = require('path');
 const config = require('./config');
 const cookieParser = require('cookie-parser');
 const setupViewEngine = require('./config/viewEngine');
@@ -12,7 +13,7 @@ const app = express();
 
 setupViewEngine(app);
 
-app.use(express.static("src/static"))
+app.use(express.static(path.join(__dirname + "/static")))
 app.use(cookieParser());
 app.use(express.urlencoded({extended : false}));
 app.use(authMiddleware.authentication);
