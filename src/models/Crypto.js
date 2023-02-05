@@ -14,16 +14,16 @@ const cryptoShema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    descrtiption:{
+    description:{
         type: String,
         required: true,
     },
-    paymentMethod: {
+    method: {
         type: String,
         required: true,
     },
     buyCrypto: {
-        type: mongoose.Types.Array,
+        type: mongoose.Types.ObjectId,
         ref : 'User'
     },
     owner: {
