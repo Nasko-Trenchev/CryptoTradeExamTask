@@ -1,5 +1,6 @@
 const homeController = require('./controllers/homeController');
 const cryptoController = require('./controllers/cryptoController');
+const authController = require('./controllers/authController');
 
 const router = require('express').Router();
 
@@ -12,5 +13,10 @@ router.get('/catalog/details/:id', cryptoController.getDetails);
 
 router.get('/create', cryptoController.getCreatePage);
 router.post('/create', cryptoController.postCreatePage);
+
+router.get('/login', authController.getLoginPage);
+router.post('/login', authController.postLoginPage);
+router.get('/register', authController.getRegisterPage);
+router.post('/register', authController.postRegisterPage);
 
 module.exports = router;
