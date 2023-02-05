@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const { unsubscribe } = require('../routes');
 
 const userShema = new mongoose.Schema({
 
@@ -14,6 +16,15 @@ const userShema = new mongoose.Schema({
         type: String,
         required: true
     }
+});
+
+userShema.pre('save', function(next) {
+
+    bcrypt.hash(this.password, 10)
+    .then(hash => {
+        this.password = hash;
+        next()
+    })
 })
 
 const User = mongoose.model('User', userShema);

@@ -17,7 +17,7 @@ exports.getCreatePage = (req, res) =>{
 
 exports.postCreatePage = async (req, res) =>{
 
-    const {name, image, price, description, method} = req.body;
+    const {name, image, price, description, method} = req.query;
     const owner = "Gosho";
     const user = "Pesho"
 

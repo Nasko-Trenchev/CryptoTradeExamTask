@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const authService = require('../services/authService');
 
 exports.getLoginPage = (req, res) =>{
 
@@ -15,14 +16,16 @@ exports.getRegisterPage = (req, res) =>{
     res.render('register')
 }
 
-exports.postRegisterPage = (req, res) =>{
+exports.postRegisterPage = async (req, res) =>{
 
-    const {name, email, password, repass} = req.body;
+    const {username, email, password, repass} = req.body;
 
     if(password !== repass){
 
         throw "Passwords don`t match";
     }
+
+    await authService.createUser({username, email, password})
     
     res.redirect('/');
 }
