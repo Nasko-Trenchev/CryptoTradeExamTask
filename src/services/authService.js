@@ -6,7 +6,7 @@ exports.getUserById = (id) => User.findById(id);
 
 exports.getUserByEmail = (email) => User.findOne({email});
 
-exports.createUser = (data) => User.create(data);
+exports.register = (data) => User.create(data);
 
 exports.login = async (email, password) => {
 

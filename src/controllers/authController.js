@@ -3,7 +3,7 @@ const authService = require('../services/authService');
 
 exports.getLoginPage = (req, res) =>{
 
-    res.render('login');
+    res.render('auth/login');
 }
 
 exports.postLoginPage = async (req, res) =>{
@@ -17,7 +17,7 @@ exports.postLoginPage = async (req, res) =>{
 
 exports.getRegisterPage = (req, res) =>{
 
-    res.render('register')
+    res.render('auth/register')
 }
 
 exports.postRegisterPage = async (req, res) =>{
@@ -29,7 +29,13 @@ exports.postRegisterPage = async (req, res) =>{
         throw "Passwords don`t match";
     }
 
-    await authService.createUser({username, email, password})
+    await authService.register({username, email, password})
     
+    res.redirect('/');
+}
+
+exports.logoutPage = (req, res) =>{
+
+    res.clearCookie('auth');
     res.redirect('/');
 }
