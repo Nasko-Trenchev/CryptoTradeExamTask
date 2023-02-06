@@ -50,3 +50,9 @@ exports.postEditPage = async (req, res) =>{
 
     res.redirect(`/catalog/${req.params.id}`)
 }
+
+exports.deletePage = async (req, res) =>{
+
+   await cryptoService.delete(req.params.id)
+   res.redirect('/catalog')
+}

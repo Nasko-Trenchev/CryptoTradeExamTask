@@ -13,6 +13,7 @@ router.get('/catalog/:id', cryptoController.getDetails);
 router.get('/buy/:id', cryptoController.buyPage);
 router.get('/edit/:id', cryptoController.getEditPage);
 router.post('/edit/:id', cryptoController.postEditPage);
+router.get('/delete/:id', cryptoController.deletePage);
 
 
 router.get('/create', cryptoController.getCreatePage);
