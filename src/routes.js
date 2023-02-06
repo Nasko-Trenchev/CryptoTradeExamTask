@@ -12,6 +12,7 @@ router.get('/catalog', cryptoController.getCatalog);
 router.get('/catalog/:id', cryptoController.getDetails);
 router.get('/buy/:id', cryptoController.buyPage);
 router.get('/edit/:id', cryptoController.getEditPage);
+router.post('/edit/:id', cryptoController.postEditPage);
 
 
 router.get('/create', cryptoController.getCreatePage);

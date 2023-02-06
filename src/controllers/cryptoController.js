@@ -44,7 +44,9 @@ exports.getEditPage = async (req, res) =>{
 exports.postEditPage = async (req, res) =>{
 
     const crypto = await cryptoService.getACrypyto(req.params.id);
+    const {name, image, price, description, method} = req.body;
 
+    await cryptoService.editInfo(req.params.id, {name, image, price, description, method})
 
     res.redirect(`/catalog/${req.params.id}`)
 }

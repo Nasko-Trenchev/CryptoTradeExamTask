@@ -6,4 +6,4 @@ exports.allOffers = () => Crypto.find();
 
 exports.getACrypyto = (id) => Crypto.findById(id);
 
-exports.saveChanges = () => Crypto.save();
+exports.editInfo = (id, data) => Crypto.findByIdAndUpdate(id, data)
