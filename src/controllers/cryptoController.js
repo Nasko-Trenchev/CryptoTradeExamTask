@@ -41,7 +41,8 @@ exports.buyPage = async (req, res) =>{
 
 exports.getEditPage = async (req, res) =>{
     const crypto = await cryptoService.getACrypyto(req.params.id).lean();
-    res.render('edit', {crypto})
+    const paymentMethod = cryptoUtils.getSelectedOption(crypto.method);
+    res.render('edit', {crypto, paymentMethod})
 }
 
 exports.postEditPage = async (req, res) =>{
