@@ -35,3 +35,16 @@ exports.buyPage = async (req, res) =>{
     await crypto.save();
     res.redirect(`/catalog/${req.params.id}`)
 }
+
+exports.getEditPage = async (req, res) =>{
+    const crypto = await cryptoService.getACrypyto(req.params.id).lean();
+    res.render('edit', {crypto})
+}
+
+exports.postEditPage = async (req, res) =>{
+
+    const crypto = await cryptoService.getACrypyto(req.params.id);
+
+
+    res.redirect(`/catalog/${req.params.id}`)
+}
