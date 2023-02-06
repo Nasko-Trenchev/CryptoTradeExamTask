@@ -7,6 +7,7 @@ const router = require('express').Router();
 router.get('/', homeController.getHomePage);
 router.get('/404', homeController.getErrorPage);
 router.get('/search', homeController.getSearchPage);
+router.post('/search', homeController.postSearchPage);
 
 router.get('/catalog', cryptoController.getCatalog);
 router.get('/catalog/:id', cryptoController.getDetails);
