@@ -10,9 +10,12 @@ exports.getCatalog = async (req, res) =>{
 exports.getDetails = async (req, res) =>{
 
     const crypto = await cryptoService.getACrypyto(req.params.id).lean()
-    const isOwner = cryptoUtils.isOwner(crypto, req.user)
-    const hasBought = crypto.buyers.includes(req.user._id);
-    res.render('details', {crypto, isOwner, hasBought});
+    if(req.user){
+        const isOwner = cryptoUtils.isOwner(crypto, req.user)
+        const hasBought = crypto.buyers.includes(req.user._id);
+        return  res.render('details', {crypto, isOwner, hasBought});
+    }
+    res.render('details', {crypto});
 }
 
 exports.getCreatePage = (req, res) =>{
