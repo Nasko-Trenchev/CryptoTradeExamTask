@@ -27,3 +27,11 @@ exports.postCreatePage = async (req, res) =>{
     const crypto = await cryptoService.createOffer({name, image, price, description, method, owner});
     res.redirect('/');
 }
+
+exports.buyPage = async (req, res) =>{
+
+    const crypto = await cryptoService.getACrypyto(req.params.id);
+    crypto.buyers.push(req.user._id);
+    await crypto.save();
+    res.redirect(`/catalog/${req.params.id}`)
+}

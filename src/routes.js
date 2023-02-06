@@ -10,6 +10,8 @@ router.get('/search', homeController.getSearchPage);
 
 router.get('/catalog', cryptoController.getCatalog);
 router.get('/catalog/:id', cryptoController.getDetails);
+router.get('/buy/:id', cryptoController.buyPage);
+
 
 router.get('/create', cryptoController.getCreatePage);
 router.post('/create', cryptoController.postCreatePage);
