@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { unsubscribe } = require('../routes');
 
 const userShema = new mongoose.Schema({
 

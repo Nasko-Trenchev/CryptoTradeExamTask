@@ -12,7 +12,7 @@ exports.login = async (email, password) => {
 
     const user = await this.getUserByEmail(email);
 
-    const isValid = user.validatePassword(password);
+    const isValid = await user.validatePassword(password);
 
     if(!user || !isValid){
 
