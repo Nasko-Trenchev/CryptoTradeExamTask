@@ -2,5 +2,5 @@
 
 exports.isOwner = (crypto, user) =>{
 
-   return  crypto._id == user._id;
+   return  crypto.owner == user._id;
 }

@@ -22,8 +22,8 @@ const cryptoShema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    buyCrypto: {
-        type: mongoose.Types.ObjectId,
+    buyers: {
+        type: [String],
         ref : 'User'
     },
     owner: {
