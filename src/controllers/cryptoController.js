@@ -54,15 +54,16 @@ exports.getEditPage = async (req, res) =>{
 
 exports.postEditPage = async (req, res) =>{
 
-    const crypto = await cryptoService.getACrypyto(req.params.id);
+    const crypto = await cryptoService.getACrypyto(req.params.id).lean();
     const {name, image, price, description, method} = req.body;
+    const paymentMethod = cryptoUtils.getSelectedOption(crypto.method);
 
     try {
         await cryptoService.editInfo(req.params.id, {name, image, price, description, method})
     }
     catch(err){
         const errors = Object.keys(err.errors).map(key=> err.errors[key].message)
-        return res.render('edit', {error: errors[0]});
+        return res.render('edit', {crypto, paymentMethod, error: errors[0]});
     }
 
     res.redirect(`/catalog/${req.params.id}`)
