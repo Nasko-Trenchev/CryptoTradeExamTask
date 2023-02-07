@@ -1,8 +1,9 @@
 const cryptoService = require('../services/cryptoService');
 
-exports.getHomePage = (req, res) => {
+exports.getHomePage = async (req, res) => {
 
-    res.render("home");
+    const crypto = await cryptoService.allOffers().lean();
+    res.render("home", {crypto});
 }
 
 exports.getErrorPage = (req, res) => {
