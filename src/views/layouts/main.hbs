@@ -25,6 +25,9 @@
                 <li><a href="/register">Register</a></li>
                 {{/if}}
             </ul>
+            {{#if isAuthenticated}}
+            <span>Logged in as: {{email}}</span>
+            {{/if}}
         </nav>
     </header>
     {{#if error}}
