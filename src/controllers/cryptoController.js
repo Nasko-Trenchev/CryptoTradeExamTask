@@ -28,8 +28,7 @@ exports.postCreatePage = async (req, res) =>{
     const {name, image, price, description, method} = req.body;
     const owner = req.user._id;
     try {
-        const crypto = await cryptoService.createOffer({name, image, price, description, method, owner});
-
+       await cryptoService.createOffer({name, image, price, description, method, owner});
     }
     catch(err){
         const errors = Object.keys(err.errors).map(key=> err.errors[key].message)
