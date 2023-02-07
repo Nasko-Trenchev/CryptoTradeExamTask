@@ -27,7 +27,14 @@ exports.postCreatePage = async (req, res) =>{
 
     const {name, image, price, description, method} = req.body;
     const owner = req.user._id;
-    const crypto = await cryptoService.createOffer({name, image, price, description, method, owner});
+    try {
+        const crypto = await cryptoService.createOffer({name, image, price, description, method, owner});
+
+    }
+    catch(err){
+        const errors = Object.keys(err.errors).map(key=> err.errors[key].message)
+        return res.render('create', {error: errors[0]})
+    }
     res.redirect('/');
 }
 
@@ -50,7 +57,13 @@ exports.postEditPage = async (req, res) =>{
     const crypto = await cryptoService.getACrypyto(req.params.id);
     const {name, image, price, description, method} = req.body;
 
-    await cryptoService.editInfo(req.params.id, {name, image, price, description, method})
+    try {
+        await cryptoService.editInfo(req.params.id, {name, image, price, description, method})
+    }
+    catch(err){
+        const errors = Object.keys(err.errors).map(key=> err.errors[key].message)
+        return res.render('edit', {error: errors[0]});
+    }
 
     res.redirect(`/catalog/${req.params.id}`)
 }

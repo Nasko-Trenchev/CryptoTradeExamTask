@@ -10,8 +10,15 @@ exports.postLoginPage = async (req, res) =>{
 
     const {email, password} = req.body;
 
-    const token = await authService.login(email, password);
-    res.cookie('auth', token, {httpOnly: true});
+    try {
+        const token = await authService.login(email, password);
+        res.cookie('auth', token, {httpOnly: true});
+    }
+    catch(err){
+        
+        return res.render('auth/login', {error: "Invalid username or password!"})
+    }
+    
     res.redirect('/');
 }
 
@@ -26,7 +33,7 @@ exports.postRegisterPage = async (req, res) =>{
 
     if(password !== repass){
 
-        throw "Passwords don`t match";
+        return res.render('auth/register', {error: "Passwords don`t match!"})
     }
 
     await authService.register({username, email, password})

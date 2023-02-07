@@ -5,7 +5,7 @@ const cryptoShema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        minLenght: 2
+        minLength: 2
     },
     image: {
         type: String,
@@ -21,7 +21,7 @@ const cryptoShema = new mongoose.Schema({
     description:{
         type: String,
         required: true,
-        minLenght: 10
+        minLength: 10
     },
     method: {
         type: String,
